@@ -13,3 +13,22 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id       String    @id @default(uuid())
+  name     String
+  email    String    @unique
+  password String
+  Graphic  Graphic[]
+
+  @@map("users")
+}
+
+model Graphic {
+  id     String @id @default(uuid())
+  xAxis  Int
+  yAxis  Int
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+}
