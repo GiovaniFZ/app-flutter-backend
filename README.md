@@ -1,7 +1,7 @@
 Olá, esse projeto será um BackEnd em Node.js que estou fazendo para uma aplicação em Flutter.
 
 ## Requisitos funcionais:
-- [ ] Se cadastrar;
+- [x] Se cadastrar;
 - [ ] Se autenticar;
 - [ ] Obter as métricas de um perfil autenticado
 - [ ] Obter o total mensal de um usuário
@@ -18,3 +18,22 @@ Olá, esse projeto será um BackEnd em Node.js que estou fazendo para uma aplica
 - [ ] A senha do usuário precisa estar criptografada;
 - [ ] Os dados da aplicação precisam estar persistidos em um banco de dados utilizando o Prisma
 - [ ] O usuário deve ser identificado por JWT
+
+## Observações
+1. Baixar o container do Postgres
+```
+docker pull bitnami/postgresql
+```
+2. Rodar o container
+```
+docker run --name postgres -e POSTGRESQL_PASSWORD=[PASSWORD] -p 5432:5432 bitnami/postgresql
+```
+3. Dentro do container rodar:
+```
+psql -U postgres
+CREATE_DATABASE [DATABASE_NAME]
+```
+4. Prisma
+```
+npx prisma migrate dev
+```
