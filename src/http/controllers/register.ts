@@ -12,6 +12,14 @@ export async function register(req: Request, res: Response) {
 
   const { name, email, password } = registerBodySchema.parse(req.body);
 
+  const userAlreadyExists = await prisma.user.findUnique({
+    where: { email },
+  });
+
+  if (userAlreadyExists) {
+    return res.status(409).json({ message: 'User already exists.' });
+  }
+
   const hashedPassword = await hash(password, 8);
 
   await prisma.user.create({
