@@ -1,6 +1,7 @@
 import z from 'zod';
 import { Request, Response } from 'express';
-import { registerUseCase } from '../../use-cases/users/register';
+import { RegisterUseCase } from '../../use-cases/users/register';
+import { PrismaUsersRepository } from '../../../repositories/prisma';
 
 export async function register(req: Request, res: Response) {
   const registerBodySchema = z.object({
@@ -12,7 +13,9 @@ export async function register(req: Request, res: Response) {
   const { name, email, password } = registerBodySchema.parse(req.body);
 
   try {
-    await registerUseCase({ name, email, password });
+    const prismaUsersRepository = new PrismaUsersRepository();
+    const registerUseCase = new RegisterUseCase(prismaUsersRepository);
+    await registerUseCase.execute({ name, email, password });
     return res.status(201).send();
   } catch (error) {
     return res.status(409).json({ message: (error as Error).message });
