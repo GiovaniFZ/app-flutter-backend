@@ -12,6 +12,7 @@ Olá, esse projeto será um BackEnd em Node.js que estou fazendo para uma aplica
 ## Regras de negócio
 - [ ] O usuário não pode ver dados de outro usuário
 - [ ] O usuário não pode editar dados de outro usuário
+- [x] O usuário não pode se cadastrar com email já existente
 
 ## Requisitos não funcionais
 - [ ] A senha do usuário precisa estar criptografada;
