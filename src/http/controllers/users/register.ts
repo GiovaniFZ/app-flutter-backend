@@ -1,7 +1,8 @@
 import z from 'zod';
 import { Request, Response } from 'express';
-import { RegisterUseCase } from '../../use-cases/users/register';
-import { PrismaUsersRepository } from '../../../repositories/prisma';
+import { RegisterUseCase } from '../../../use-cases/users/register';
+import { PrismaUsersRepository } from '../../../../repositories/prisma';
+import { UserAlreadyExistsError } from '../../../use-cases/errors/user-already-exists';
 
 export async function register(req: Request, res: Response) {
   const registerBodySchema = z.object({
@@ -18,6 +19,9 @@ export async function register(req: Request, res: Response) {
     await registerUseCase.execute({ name, email, password });
     return res.status(201).send();
   } catch (error) {
-    return res.status(409).json({ message: (error as Error).message });
+    if (error instanceof UserAlreadyExistsError) {
+      return res.status(409).json({ message: error.message });
+    }
+    return res.status(500).send();
   }
 }

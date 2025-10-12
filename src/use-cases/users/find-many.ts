@@ -1,6 +1,11 @@
-import { prisma } from '../../lib/prisma';
+import { UsersRepository } from '../../../repositories/users-repository';
 
-export async function findManyUsersUseCase() {
-  const users = await prisma.user.findMany();
-  return users;
+export class findManyUsersUseCase {
+  constructor(private usersRepository: UsersRepository) {
+    this.usersRepository = usersRepository;
+  }
+  async execute() {
+    const users = await this.usersRepository.findMany();
+    return users;
+  }
 }
