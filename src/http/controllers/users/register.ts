@@ -1,8 +1,7 @@
 import z from 'zod';
 import { Request, Response } from 'express';
-import { RegisterUseCase } from '../../../use-cases/users/register';
-import { PrismaUsersRepository } from '../../../../repositories/prisma';
 import { UserAlreadyExistsError } from '../../../use-cases/errors/user-already-exists';
+import { makeRegisterUseCase } from '../../../use-cases/factories/make-register-use-case';
 
 export async function register(req: Request, res: Response) {
   const registerBodySchema = z.object({
@@ -14,8 +13,7 @@ export async function register(req: Request, res: Response) {
   const { name, email, password } = registerBodySchema.parse(req.body);
 
   try {
-    const prismaUsersRepository = new PrismaUsersRepository();
-    const registerUseCase = new RegisterUseCase(prismaUsersRepository);
+    const registerUseCase = makeRegisterUseCase();
     await registerUseCase.execute({ name, email, password });
     return res.status(201).send();
   } catch (error) {
