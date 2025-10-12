@@ -15,9 +15,9 @@ Olá, esse projeto será um BackEnd em Node.js que estou fazendo para uma aplica
 - [x] O usuário não pode se cadastrar com email já existente
 
 ## Requisitos não funcionais
-- [ ] A senha do usuário precisa estar criptografada;
-- [ ] Os dados da aplicação precisam estar persistidos em um banco de dados utilizando o Prisma
-- [ ] O usuário deve ser identificado por JWT
+- [x] A senha do usuário precisa estar criptografada;
+- [x] Os dados da aplicação precisam estar persistidos em um banco de dados utilizando o Prisma
+- [x] O usuário deve ser identificado por JWT
 
 ## Observações
 1. Baixar o container do Postgres
