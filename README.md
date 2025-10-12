@@ -2,7 +2,7 @@ Olá, esse projeto será um BackEnd em Node.js que estou fazendo para uma aplica
 
 ## Requisitos funcionais:
 - [x] Se cadastrar;
-- [ ] Se autenticar;
+- [x] Se autenticar;
 - [ ] Obter as métricas de um perfil autenticado
 - [ ] Obter o total mensal de um usuário
 - [ ] Obter valores das faturas, total, a pagar e não pagos
@@ -12,7 +12,6 @@ Olá, esse projeto será um BackEnd em Node.js que estou fazendo para uma aplica
 ## Regras de negócio
 - [ ] O usuário não pode ver dados de outro usuário
 - [ ] O usuário não pode editar dados de outro usuário
-
 
 ## Requisitos não funcionais
 - [ ] A senha do usuário precisa estar criptografada;
